@@ -31,3 +31,38 @@
 
 - Observe MCP-сервер отвечает на такие вопросы напрямую: ошибки с их трейсами и логами, медленные операции, задачи и что изменил конкретный релиз (`find_regressions`, `diff_release`). Доступен на тарифе Pro и выше. В Claude Code: `claude mcp add observe --transport http https://observe-api.nestjs.com/mcp` — клиент откроет браузер для подтверждения. Для других клиентов: https://www.observe.nestjs.com/documentation/mcp
 - Без него пользователь может открыть запрос или ошибку в дашборде Observe и нажать **Copy agent prompt** — это передаст трейз, стек и логи этой страницы как текст.
+
+## Конвенция коммитов: Conventional Commits
+
+Все коммиты следуют [Conventional Commits](https://www.conventionalcommits.org/ru/v1.0.0/):
+
+```
+<type>(<scope>): <краткое описание>
+```
+
+Типы:
+
+- `feat` — новая функциональность
+- `fix` — исправление ошибки
+- `docs` — только документация (README, AGENTS.md)
+- `style` — форматирование, не меняющее смысла кода
+- `refactor` — рефакторинг без изменения поведения
+- `perf` — улучшение производительности
+- `test` — добавление или правка тестов
+- `build` — сборка и зависимости (package.json, tsconfig)
+- `ci` — настройки CI
+- `chore` — прочее (docker-compose, .gitignore, скрипты)
+- `revert` — откат коммита
+
+Scope опционален, типичные значения в этом проекте: `db`, `documents`, `docker`, `deps`.
+
+Описание — на английском, в повелительном наклонении (imperative mood), как будто вы отдаёте команду коду: «add endpoint», а не «adds endpoint» или «added endpoint». Кратко, без точки в конце.
+
+Примеры:
+
+- `feat(documents): add vector search endpoint`
+- `fix(db): correct embedding dimensions in schema`
+- `chore(docker): add Adminer to compose`
+- `docs: update setup instructions`
+
+Ломающие изменения помечаются футером `BREAKING CHANGE: <описание>` в теле коммита.

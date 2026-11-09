@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { EMBEDDING_DIMS } from '../db/schema.js';
+import { EMBEDDING_DIMS } from '../db/schemas/documents/documents.schema.js';
 
 export const createDocumentSchema = z.object({
   title: z.string().min(1).max(500),

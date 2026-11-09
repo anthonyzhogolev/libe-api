@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectDrizzle } from '@nestjs/drizzle';
 import { asc, cosineDistance, desc, sql } from 'drizzle-orm';
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { documents, type Document, type NewDocument } from '../db/schema.js';
+import {
+  documents,
+  type Document,
+  type NewDocument,
+} from '../db/schemas/documents/documents.schema.js';
 
 @Injectable()
 export class DocumentsService {

@@ -66,3 +66,18 @@ Scope опционален, типичные значения в этом про
 - `docs: update setup instructions`
 
 Ломающие изменения помечаются футером `BREAKING CHANGE: <описание>` в теле коммита.
+
+## Расположение схем БД (Drizzle)
+
+Таблицы объявляются в файлах `*.schema.ts` внутри папок фич:
+
+- `src/db/schemas/<feature>/<feature>.schema.ts` — таблицы, константы и типы фичи (`$inferSelect`/`$inferInsert`)
+- `src/db/schema.ts` — единый barrel: только реэкспорты всех таблиц, точка входа для drizzle-kit (`drizzle.config.ts` указывает именно на него, путь не менять)
+
+При добавлении новой фичи:
+
+1. Создать `src/db/schemas/<feature>/<feature>.schema.ts` с таблицами через `pgTable`
+2. Добавить строку реэкспорта в `src/db/schema.ts`
+3. Импортировать схему в коде напрямую из файла фичи, а не из barrel
+
+Цикл изменений схемы: правка `*.schema.ts` → `npm run db:generate` → `npm run db:migrate`.

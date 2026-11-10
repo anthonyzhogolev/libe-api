@@ -81,3 +81,21 @@ Scope опционален, типичные значения в этом про
 3. Импортировать схему в коде напрямую из файла фичи, а не из barrel
 
 Цикл изменений схемы: правка `*.schema.ts` → `npm run db:generate` → `npm run db:migrate`.
+
+## Инструментарий (Windows + Git Bash)
+
+- `docker` не виден из Git Bash — перед командами docker экспортировать PATH:
+  `export PATH="$PATH:/c/Program Files/Docker/Docker/resources/bin"`
+- Git Bash портит не-ASCII в аргументах команд: `curl -d '{"title":"Кот"}'` уходит в БД как U+FFFD. Для русского текста писать JSON в файл и слать `curl --data-binary @payload.json -H 'Content-Type: application/json'`.
+
+## Auth
+
+- Свой `JwtAuthGuard` на `@nestjs/jwt`, **без passport** — минимум абстракций для одной JWT-стратегии. Passport или `@nestjs/authentication` добавлять при появлении второго провайдера (OAuth и т.п.).
+- bcryptjs — осознанный выбор без нативной сборки. Чистый пароль существует только в auth-модуле; `UsersService` принимает и хранит хеш.
+- Правила безопасности: ответы не содержат `password`; `role` не принимается из запроса (только дефолт `'user'`); логин отдаёт единый 401 «Invalid credentials», не раскрывая существование email.
+- `JWT_SECRET`: случайный минимум 32 байта, только из env (`getOrThrow`, без fallback в коде). Смена секрета инвалидирует все выданные токены.
+
+## Векторный поиск (pgvector)
+
+- `EMBEDDING_DIMS = 3` в `documents.schema.ts` — демо-значение для ручных экспериментов. Для реального поиска поставить размерность эмбеддинг-модели и сгенерировать новую миграцию.
+- Похожесть считается как `1 - cosineDistance(...)` (оператор pgvector `<=>`), значение от 0 до 1.

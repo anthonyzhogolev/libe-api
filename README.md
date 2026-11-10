@@ -25,6 +25,19 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Запуск проекта (libe-api)
+
+```bash
+$ npm install
+$ cp .env.example .env            # и прописать JWT_SECRET (случайные 32 байта)
+$ npm run db:up                   # PostgreSQL + pgvector + Adminer в Docker
+$ npm run db:migrate              # применить миграции Drizzle
+$ npm run start:dev               # API на http://localhost:3000
+```
+
+- Веб-интерфейс БД (Adminer): http://localhost:8080 — система PostgreSQL, сервер `db`, логин/пароль `postgres`/`postgres`, база `libe`.
+- Соглашения проекта: [AGENTS.md](AGENTS.md).
+
 ## Project setup
 
 ```bash

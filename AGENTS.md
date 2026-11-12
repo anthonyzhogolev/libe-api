@@ -54,13 +54,13 @@
 - `chore` — прочее (docker-compose, .gitignore, скрипты)
 - `revert` — откат коммита
 
-Scope опционален, типичные значения в этом проекте: `db`, `documents`, `docker`, `deps`.
+Scope опционален, типичные значения в этом проекте: `db`, `docker`, `deps`.
 
 Описание — на английском, в повелительном наклонении (imperative mood), как будто вы отдаёте команду коду: «add endpoint», а не «adds endpoint» или «added endpoint». Кратко, без точки в конце.
 
 Примеры:
 
-- `feat(documents): add vector search endpoint`
+- `feat(auth): add refresh token rotation`
 - `fix(db): correct embedding dimensions in schema`
 - `chore(docker): add Adminer to compose`
 - `docs: update setup instructions`

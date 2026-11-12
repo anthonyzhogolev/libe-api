@@ -1,0 +1,59 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "5b52f2a8-5c9d-4a74-8e1f-70c34ff2c19d",
+  "prevIds": [
+    "a9affeb2-19fa-4381-9314-2ad511a1225f"
+  ],
+  "footprints": [
+    {
+      "statementType": "drop_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "documents"
+      ],
+      "writes": [
+        "s|tbl|public.documents",
+        "n|tbl|public.documents",
+        "e|tbl|public.documents",
+        "n|rel|public.documents",
+        "n|type|public.documents"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "drop",
+      "key": "tables\u0000[\"public\",\"documents\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"documents\",\"id\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"documents\",\"title\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"documents\",\"content\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"documents\",\"embedding\"]"
+    },
+    {
+      "op": "drop",
+      "key": "columns\u0000[\"public\",\"documents\",\"created_at\"]"
+    },
+    {
+      "op": "drop",
+      "key": "pks\u0000[\"public\",\"documents\",\"documents_pkey\"]"
+    }
+  ]
+}
